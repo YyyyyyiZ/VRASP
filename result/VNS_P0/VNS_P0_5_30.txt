@@ -1,0 +1,215 @@
+C:\Users\Lenovo\.conda\envs\VRASP\python.exe "F:\In class\毕业设计\VRASP\cplex_solver2.py" 
+C:\Users\Lenovo\.conda\envs\VRASP\lib\site-packages\cplex\__init__.py
+solution for: CPLEX Deterministic
+objective: 130
+x_1_0_1=1
+x_1_1_3=1
+x_1_2_5=1
+x_1_3_4=1
+x_1_4_2=1
+x_1_5_6=1
+scheduled_1=53.400
+scheduled_2=370.633
+scheduled_3=289.833
+scheduled_4=344.233
+scheduled_5=409.433
+scheduled_6=480.000
+actual_1=53.400
+actual_2=370.633
+actual_3=289.833
+actual_4=344.233
+actual_5=409.433
+
+0.09927582740783691
+solution for: CPLEX Deterministic
+objective: 122
+x_1_0_1=1
+x_1_1_3=1
+x_1_2_5=1
+x_1_3_2=1
+x_1_4_6=1
+x_1_5_4=1
+scheduled_1=31.867
+scheduled_2=108.933
+scheduled_3=79.133
+scheduled_4=179.133
+scheduled_5=148.167
+scheduled_6=480.000
+actual_1=31.867
+actual_2=108.933
+actual_3=79.133
+actual_4=179.133
+actual_5=148.167
+
+0.03636479377746582
+solution for: CPLEX Deterministic
+objective: 135
+x_1_0_3=1
+x_1_1_6=1
+x_1_2_1=1
+x_1_3_5=1
+x_1_4_2=1
+x_1_5_4=1
+scheduled_1=229.733
+scheduled_2=196.367
+scheduled_3=37.067
+scheduled_4=142.500
+scheduled_5=90.367
+scheduled_6=299.600
+actual_1=229.733
+actual_2=196.367
+actual_3=37.067
+actual_4=142.500
+actual_5=90.367
+
+0.04096722602844238
+solution for: CPLEX Deterministic
+objective: 124
+x_1_0_2=1
+x_1_1_5=1
+x_1_2_3=1
+x_1_3_4=1
+x_1_4_1=1
+x_1_5_6=1
+scheduled_1=150.767
+scheduled_2=20.400
+scheduled_3=57.633
+scheduled_4=102.167
+scheduled_5=180.800
+scheduled_6=244.467
+actual_1=150.767
+actual_2=20.400
+actual_3=57.633
+actual_4=102.167
+actual_5=180.800
+
+0.05099916458129883
+solution for: CPLEX Deterministic
+objective: 129
+x_1_0_2=1
+x_1_1_5=1
+x_1_2_1=1
+x_1_3_6=1
+x_1_4_3=1
+x_1_5_4=1
+scheduled_1=45.233
+scheduled_2=13.300
+scheduled_3=228.533
+scheduled_4=180.433
+scheduled_5=110.267
+scheduled_6=280.200
+actual_1=45.233
+actual_2=13.300
+actual_3=228.533
+actual_4=180.433
+actual_5=110.267
+
+0.08900284767150879
+solution for: CPLEX Deterministic
+objective: 127
+x_1_0_1=1
+x_1_1_3=1
+x_1_2_5=1
+x_1_3_2=1
+x_1_4_6=1
+x_1_5_4=1
+scheduled_1=25.333
+scheduled_2=95.233
+scheduled_3=63.367
+scheduled_4=185.533
+scheduled_5=127.167
+scheduled_6=480.000
+actual_1=25.333
+actual_2=95.233
+actual_3=63.367
+actual_4=185.533
+actual_5=127.167
+
+0.049994468688964844
+solution for: CPLEX Deterministic
+objective: 124
+x_1_0_3=1
+x_1_1_5=1
+x_1_2_1=1
+x_1_3_4=1
+x_1_4_2=1
+x_1_5_6=1
+scheduled_1=145.733
+scheduled_2=98.733
+scheduled_3=13.767
+scheduled_4=57.500
+scheduled_5=186.533
+scheduled_6=239.000
+actual_1=145.733
+actual_2=98.733
+actual_3=13.767
+actual_4=57.500
+actual_5=186.533
+
+0.038049936294555664
+solution for: CPLEX Deterministic
+objective: 132
+x_1_0_1=1
+x_1_1_3=1
+x_1_2_6=1
+x_1_3_5=1
+x_1_4_2=1
+x_1_5_4=1
+scheduled_1=40.467
+scheduled_2=233.633
+scheduled_3=84.767
+scheduled_4=192.067
+scheduled_5=139.200
+scheduled_6=277.500
+actual_1=40.467
+actual_2=233.633
+actual_3=84.767
+actual_4=192.067
+actual_5=139.200
+
+0.037162065505981445
+solution for: CPLEX Deterministic
+objective: 122
+x_1_0_1=1
+x_1_1_4=1
+x_1_2_3=1
+x_1_3_6=1
+x_1_4_5=1
+x_1_5_2=1
+scheduled_1=23.433
+scheduled_2=140.300
+scheduled_3=194.267
+scheduled_4=50.200
+scheduled_5=86.033
+scheduled_6=242.467
+actual_1=23.433
+actual_2=140.300
+actual_3=194.267
+actual_4=50.200
+actual_5=86.033
+
+0.03798699378967285
+solution for: CPLEX Deterministic
+objective: 123
+x_1_0_4=1
+x_1_1_3=1
+x_1_2_6=1
+x_1_3_2=1
+x_1_4_5=1
+x_1_5_1=1
+scheduled_1=108.800
+scheduled_2=404.800
+scheduled_3=147.167
+scheduled_4=41.100
+scheduled_5=71.333
+scheduled_6=480.000
+actual_1=108.800
+actual_2=404.800
+actual_3=147.167
+actual_4=41.100
+actual_5=71.333
+
+0.03750944137573242
+Average Running Time：0.051731276512146
+
+Process finished with exit code 0

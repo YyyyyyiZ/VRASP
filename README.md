@@ -16,7 +16,6 @@ scipy 1.7.3
   * problem size--[5, 10, 20, 30, 40]
   * number of instances--20
   * nunber of samples in SAA implementation--[30, 50, 80, 100]
-* .\result: results of the experiment
 * .\utils\data_model: Class
 * .\utils\gen_data: generate experiment data, save them into .txt file
 * .\utils\readwrite: load the experiment data

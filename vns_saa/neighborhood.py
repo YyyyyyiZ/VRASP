@@ -7,7 +7,7 @@ from vns_saa.tool import calculate_actual, calculate_cost_over_samples, calculat
 def calculate_regret_values(li, vrp, customer_id, routes, scheduled):
     insertion_cost = []
     for idr, route in enumerate(routes):
-        for i in range(1, len(route)-1):
+        for i in range(1, len(route) - 1):
             new_route = route[:i] + [customer_id] + route[i:]
             new_schedule = calculate_actual([new_route], vrp.travel_matrix, vrp.service_duration)[0]
             ori_cost = calculate_route_cost_over_samples(li, route, scheduled[idr], scheduled[idr])
@@ -30,7 +30,7 @@ def insert_customer(li, vrp, customer_id, routes, scheduled):
     best_route_idr = None
     best_position = None
     for idr, route in enumerate(routes):
-        for i in range(1, len(route)-1):
+        for i in range(1, len(route) - 1):
             new_route = route[:i] + [customer_id] + route[i:]
             new_schedule = calculate_actual([new_route], vrp.travel_matrix, vrp.service_duration)[0]
             new_cost = calculate_route_cost_over_samples(li, new_route, new_schedule, new_schedule)
@@ -98,10 +98,13 @@ def shake(k, li, vrp, route1, scheduled1, ratio):
     return route1_1, schedule1_1
 
 
-# Randomly flipping a slice of a route
+# 2-Opt: Randomly flipping a slice of a route
 def ts_opt0(li, vrp, routes, neighbour_num):
     idr = random.randint(0, len(routes) - 1)
     route = routes[idr]
+    while len(route) == 3:
+        idr = random.randint(0, len(routes) - 1)
+        route = routes[idr]
     solution_neighbours = []
     for i in range(0, neighbour_num):
         # Randomly choose 2 points without changing the order
@@ -117,6 +120,22 @@ def ts_opt0(li, vrp, routes, neighbour_num):
             temp_schedule = calculate_actual(routes, vrp.travel_matrix, vrp.service_duration)
             cost = calculate_cost_over_samples(li, routes, temp_schedule)
             solution_neighbours.append([routes, cost])
+    return solution_neighbours
+
+
+# Swap
+def ts_opt1(li, vrp, routes, neighbour_num):
+    solution_neighbours = []
+    for i in range(0, neighbour_num):
+        temp = routes
+        i, j = random.sample(range(0, len(routes) - 1), 2)  # Randomly select two routes
+        node1 = random.randint(1, len(routes[i]) - 2)
+        node2 = random.randint(1, len(routes[j]) - 2)
+        temp[i][node1], temp[j][node2] = temp[j][node2], temp[i][node1]
+        if temp not in solution_neighbours:
+            temp_schedule = calculate_actual(temp, vrp.travel_matrix, vrp.service_duration)
+            cost = calculate_cost_over_samples(li, temp, temp_schedule)
+            solution_neighbours.append([temp, cost])
     return solution_neighbours
 
 
@@ -137,7 +156,10 @@ def variable_neighborhood_descent(li, vrp, route1, scheduled1, phi):
     cost_history = list()
     cost_history.append(curr_solution[1])
     for k in range(0, phi):
-        neighbour_solution = ts_opt0(li, vrp, curr_solution[0], neighbour_num=100)
+        if k % 2 == 0:
+            neighbour_solution = ts_opt0(li, vrp, curr_solution[0], neighbour_num=100)
+        else:
+            neighbour_solution = ts_opt1(li, vrp, curr_solution[0], neighbour_num=100)
         neighbour_solution.sort(key=lambda x: x[1])
         best_neighbour_solution_index = 0
         best_neighbour_solution = neighbour_solution[best_neighbour_solution_index]

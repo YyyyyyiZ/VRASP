@@ -44,17 +44,17 @@ def main(size, instance_id, total_samples, num_samples, isSaa=True, cf=100, co=1
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='VRASP VNS solver')
-    parser.add_argument('--size', default=10, type=int, help='problem size')
+    parser.add_argument('--size', default=40, type=int, help='problem size')
     parser.add_argument('--instance', default=10, type=int, help='number of instance')
     parser.add_argument('--total_samples', default=100, type=int, help='number of all available samples')
-    parser.add_argument('--num_samples', default=50, type=int, help='number of samples')
-    parser.add_argument('--isSAA', default=True, type=bool, help='SAA or deterministic')
+    parser.add_argument('--num_samples', default=100, type=int, help='number of samples')
+    parser.add_argument('--isSAA', default=False, type=bool, help='SAA or deterministic')
     parser.add_argument('--cf', default=100, type=int, help='fixed cost')
     parser.add_argument('--co', default=1, type=int, help='unit work overtime cost')
     parser.add_argument('--ct', default=2, type=int, help='unit lateness cost')
     parser.add_argument('--length', default=480, type=int, help='total work time')
 
-    parser.add_argument('--max_iter', default=1000, type=int, help='max iteration of VNS')
+    parser.add_argument('--max_iter', default=500, type=int, help='max iteration of VNS')
     parser.add_argument('--k_max', default=2, type=int, help='number of neighborhood')
     parser.add_argument('--ts_iter', default=100, type=int, help='max iteration of local search')
     parser.add_argument('--ratio', default=0.2, type=int, help='ratio of customers in Neighborhood')

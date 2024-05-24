@@ -13,7 +13,7 @@ def calculate_regret_values(vrp, customer_id, routes, scheduled, travel_matrix, 
             ori_cost = route_cost(vrp, route, scheduled[idr], scheduled[idr])
             new_cost = route_cost(vrp, new_route, new_schedule, new_schedule)
             # positive, the smaller, the better
-            delta_cost = new_cost-ori_cost
+            delta_cost = new_cost - ori_cost
             insertion_cost.append(delta_cost)
     # secondSmallest-smallest, greater → more regret
     insertion_cost_srt = sorted(insertion_cost)
@@ -36,7 +36,7 @@ def insert_customer(vrp, customer_id, routes, scheduled, travel_matrix, service_
             new_cost = route_cost(vrp, new_route, new_schedule, new_schedule)
             ori_cost = route_cost(vrp, route, scheduled[idr], scheduled[idr])
             # positive, the smaller, the better
-            delta_cost = new_cost-ori_cost
+            delta_cost = new_cost - ori_cost
             if delta_cost < best_cost:
                 best_cost = new_cost
                 best_route_idr = idr
@@ -65,7 +65,7 @@ def regret_insertion(vrp, selected, route1, scheduled, travel_matrix, service_du
 
 # Randomly choose a set of customers
 def change_neighborhood_0(vrp, route1, scheduled1, travel_matrix, service_duration, ratio=0.2):
-    selected = random.sample(range(1, vrp.number_of_patients + 1), int(ratio*vrp.number_of_patients))
+    selected = random.sample(range(1, vrp.number_of_patients + 1), int(ratio * vrp.number_of_patients))
     route1_1 = regret_insertion(vrp, selected, route1, scheduled1, travel_matrix, service_duration)
     scheduled1_1 = calculate_schedule_or_actual(route1_1, travel_matrix, service_duration)
 
@@ -82,7 +82,7 @@ def change_neighborhood_1(vrp, route1, scheduled1, travel_matrix, service_durati
         cost.append((i, temp))
     cost = sorted(cost, key=lambda x: x[1])
     selected = []
-    for j in range(int(ratio*vrp.number_of_patients)):
+    for j in range(int(ratio * vrp.number_of_patients)):
         selected.append(cost[j][0])
     route1_1 = regret_insertion(vrp, selected, route1, scheduled1, travel_matrix, service_duration)
     scheduled1_1 = calculate_schedule_or_actual(route1_1, travel_matrix, service_duration)
@@ -105,6 +105,9 @@ def shake(k, vrp, route1, scheduled1, travel_matrix, service_duration, ratio):
 def ts_opt0(vrp, routes, travel_matrix, service_duration, neighbour_num):
     idr = random.randint(0, len(routes) - 1)
     route = routes[idr]
+    while len(route) < 4:
+        idr = random.randint(0, len(routes) - 1)
+        route = routes[idr]
     solution_neighbours = []
     for i in range(0, neighbour_num):
         # Randomly choose 2 points without changing the order
@@ -123,6 +126,22 @@ def ts_opt0(vrp, routes, travel_matrix, service_duration, neighbour_num):
     return solution_neighbours
 
 
+# Swap
+def ts_opt1(vrp, routes, travel_matrix, service_duration, neighbour_num):
+    solution_neighbours = []
+    for i in range(0, neighbour_num):
+        temp = routes
+        i, j = random.sample(range(0, len(routes) - 1), 2)  # Randomly select two routes
+        node1 = random.randint(1, len(routes[i]) - 2)
+        node2 = random.randint(1, len(routes[j]) - 2)
+        temp[i][node1], temp[j][node2] = temp[j][node2], temp[i][node1]
+        if temp not in solution_neighbours:
+            temp_schedule = calculate_schedule_or_actual(temp, travel_matrix, service_duration)
+            cost = graph_cost(vrp, temp, temp_schedule, temp_schedule)
+            solution_neighbours.append([temp, cost])
+    return solution_neighbours
+
+
 def calculate_arcs(routes):
     arcs = []
     for route in routes:
@@ -133,14 +152,17 @@ def calculate_arcs(routes):
 
 
 def variable_neighborhood_descent(vrp, route1, scheduled1, travel_matrix, service_duration, phi):
-    tabu_size = int(random.uniform(vrp.number_of_patients, vrp.number_of_patients*2))
+    tabu_size = int(random.uniform(vrp.number_of_patients, vrp.number_of_patients * 2))
     curr_solution = [route1, graph_cost(vrp, route1, scheduled1, scheduled1)]
     best_solution = copy.deepcopy(curr_solution)
     tabu_list = list()
     cost_history = list()
     cost_history.append(curr_solution[1])
     for k in range(0, phi):
-        neighbour_solution = ts_opt0(vrp, curr_solution[0], travel_matrix, service_duration, neighbour_num=100)
+        if k % 2 == 0:
+            neighbour_solution = ts_opt0(vrp, curr_solution[0], travel_matrix, service_duration, neighbour_num=100)
+        else:
+            neighbour_solution = ts_opt1(vrp, curr_solution[0], travel_matrix, service_duration, neighbour_num=100)
         neighbour_solution.sort(key=lambda x: x[1])
         best_neighbour_solution_index = 0
         best_neighbour_solution = neighbour_solution[best_neighbour_solution_index]

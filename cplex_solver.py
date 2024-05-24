@@ -211,10 +211,10 @@ def main(size, instance_id, total_samples, num_samples, isSaa=True, cf=100, co=1
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='VRASP CPLEX solver')
-    parser.add_argument('--size', default=5, type=int, help='problem size')
+    parser.add_argument('--size', default=10, type=int, help='problem size')
     parser.add_argument('--instance', default=10, type=int, help='number of instance')
     parser.add_argument('--total_samples', default=100, type=int, help='number of all available samples')
-    parser.add_argument('--num_samples', default=30, type=int, help='number of samples')
+    parser.add_argument('--num_samples', default=10, type=int, help='number of samples')
     parser.add_argument('--isSAA', default=True, type=bool, help='SAA or deterministic')
     parser.add_argument('--cf', default=100, type=int, help='fixed cost')
     parser.add_argument('--co', default=1, type=int, help='unit work overtime cost')

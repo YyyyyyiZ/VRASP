@@ -89,7 +89,7 @@ def variable_neighborhood_search(vrp, cur_route, cur_schedule, max_iter, k_max, 
             else:
                 k += 1
 
-        if (idm+1) % 10 == 0:
+        if (idm+1) % 100 == 0:
             cur_cost = calculate_cost_over_samples(vrp, best_route, best_schedule)
             print("VNS iter:{}   Current_best_solution:\n{}\n{}".format(idm + 1, best_route, best_schedule))
             print("Cost:{}".format(cur_cost))

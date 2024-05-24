@@ -17,14 +17,11 @@ def calculate_actual(routes, travel_matrix, service_duration):
 
 
 def merge_shortest_routes(lst, crew):
-    new = lst[:]
     while len(lst) > crew:
         shortest_idx1 = min(range(len(lst)), key=lambda i: len(lst[i]))
         shortest_idx2 = min([i for i in range(len(lst)) if i != shortest_idx1], key=lambda i: len(lst[i]))
-        new.remove(lst[shortest_idx1])
-        new.remove(lst[shortest_idx2])
-        new.append(lst[shortest_idx1] + lst[shortest_idx2])
-    return new
+        lst = [lst[i] for i in range(len(lst)) if i != shortest_idx1 and i != shortest_idx2]
+    return lst
 
 
 def route_cost(vrp, route, one_schedule, one_actual):

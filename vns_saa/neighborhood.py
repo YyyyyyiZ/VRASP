@@ -155,11 +155,16 @@ def variable_neighborhood_descent(li, vrp, route1, scheduled1, phi):
     tabu_list = list()
     cost_history = list()
     cost_history.append(curr_solution[1])
+
     for k in range(0, phi):
-        if k % 2 == 0:
-            neighbour_solution = ts_opt0(li, vrp, curr_solution[0], neighbour_num=100)
-        else:
-            neighbour_solution = ts_opt1(li, vrp, curr_solution[0], neighbour_num=100)
+        # if vrp.number_of_patients > 6:
+        #     if k % 2 == 0:
+        #         neighbour_solution = ts_opt0(li, vrp, curr_solution[0], neighbour_num=100)
+        #     else:
+        #         neighbour_solution = ts_opt1(li, vrp, curr_solution[0], neighbour_num=100)
+        # else:
+        #     neighbour_solution = ts_opt0(li, vrp, curr_solution[0], neighbour_num=100)
+        neighbour_solution = ts_opt0(li, vrp, curr_solution[0], neighbour_num=100)
         neighbour_solution.sort(key=lambda x: x[1])
         best_neighbour_solution_index = 0
         best_neighbour_solution = neighbour_solution[best_neighbour_solution_index]
